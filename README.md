@@ -1,7 +1,7 @@
 # Admin list
 Displays a list of online administrators in the chat on command **!admins**
 
-<img src="https://imgur.com/7jTW7Ot"/>
+<img src="https://imgur.com/7jTW7Ot">
 
 ## Requirements
 - [Metamod](https://www.sourcemm.net/downloads.php/?branch=master)
