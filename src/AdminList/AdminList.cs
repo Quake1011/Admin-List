@@ -32,15 +32,24 @@ public class AdminList : BasePlugin
     public void OnCommand(CCSPlayerController? activator, CommandInfo command)
     {
         var admins = 1;
+        activator?.PrintToChat($" {ChatColors.Red}Admins {ChatColors.Green}Online{ChatColors.Red}:");
+        activator?.PrintToChat($" {ChatColors.Red}------------------------");
         foreach (var player in Utilities.GetPlayers().Where(player => player is { IsBot: false, IsValid: true}).Where(player => _config?.ShowFlag != null && AdminManager.PlayerHasPermissions(player, _config.ShowFlag) && !AdminManager.PlayerHasPermissions(player, _config.ImmunityFlag!)))
         {
-            if (player == activator) 
+            if (player == activator)
             {
-                if (_config!.ShowSelf) activator.PrintToChat($"[#{admins}] {ChatColors.LightRed}{player.PlayerName}");
+                if (!_config!.ShowSelf) continue;
+                activator.PrintToChat($" [#{admins}] {ChatColors.LightRed}{player.PlayerName}");
+                admins++;
             }
-            else activator?.PrintToChat($"[#{admins}] {ChatColors.LightRed}{player.PlayerName}");
-            admins++;
+            else
+            {
+                activator?.PrintToChat($" [#{admins}] {ChatColors.LightRed}{player.PlayerName}");
+                admins++;
+            }
         }
+        activator?.PrintToChat($" {ChatColors.Red}------------------------");
+        if (admins == 1) activator?.PrintToChat($" {ChatColors.Red}At the moment there are no admins on the server");
     }
     private class Config
      {
