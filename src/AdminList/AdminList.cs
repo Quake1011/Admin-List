@@ -16,7 +16,7 @@ public abstract class AdminList : BasePlugin
 
     private static Config? _config;
 
-    public override void Load(bool hl)
+    public override void Load(bool hotLoaded)
     {
         var configPath = Path.Join(ModuleDirectory, "Config.json");
         if (!File.Exists(configPath))
@@ -29,7 +29,7 @@ public abstract class AdminList : BasePlugin
     }
 
     [ConsoleCommand("admins", "Prints admins list")]
-    public static void OnCommand(CCSPlayerController? activator, CommandInfo command)
+    public void OnCommand(CCSPlayerController? activator, CommandInfo command)
     {
         var admins = 1;
         foreach (var player in Utilities.GetPlayers().Where(player => player is { IsBot: false, IsValid: true}).Where(player => _config?.ShowFlag != null && AdminManager.PlayerHasPermissions(player, _config.ShowFlag) && !AdminManager.PlayerHasPermissions(player, _config.ImmunityFlag!)))
