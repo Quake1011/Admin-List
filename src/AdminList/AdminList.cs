@@ -29,20 +29,16 @@ public abstract class AdminList : BasePlugin
     }
 
     [ConsoleCommand("admins", "Prints admins list")]
-    public void OnCommand(CCSPlayerController? activator, CommandInfo command)
+    public static void OnCommand(CCSPlayerController? activator, CommandInfo command)
     {
         var admins = 1;
-        for (var i = 0; i <= Server.MaxPlayers; i++)
+        foreach (var player in Utilities.GetPlayers().Where(player => player is { IsBot: false, IsValid: true}).Where(player => _config?.ShowFlag != null && AdminManager.PlayerHasPermissions(player, _config.ShowFlag) && !AdminManager.PlayerHasPermissions(player, _config.ImmunityFlag!)))
         {
-            var player = new CCSPlayerController(NativeAPI.GetEntityFromIndex(i));
-            
-            if (player is not { IsBot: false, IsValid: true}) continue;
-            if (!(_config?.ShowFlag != null && AdminManager.PlayerHasPermissions(player, _config.ShowFlag)) || AdminManager.PlayerHasPermissions(player, _config.ImmunityFlag!)) continue;
-
             if (player == activator) 
-                if (_config.ShowSelf) activator.PrintToChat($"[#{admins}] {ChatColors.LightRed}{player.PlayerName}");
-            else activator.PrintToChat($"[#{admins}] {ChatColors.LightRed}{player.PlayerName}");
-            
+            {
+                if (_config!.ShowSelf) activator.PrintToChat($"[#{admins}] {ChatColors.LightRed}{player.PlayerName}");
+            }
+            else activator?.PrintToChat($"[#{admins}] {ChatColors.LightRed}{player.PlayerName}");
             admins++;
         }
     }
