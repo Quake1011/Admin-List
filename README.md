@@ -1,5 +1,5 @@
 # Admin list
-Simple admin list plugin
+Displays a list of online administrators in the chat on command **!admins**
 
 ## Requirements
 - [Metamod](https://www.sourcemm.net/downloads.php/?branch=master)
