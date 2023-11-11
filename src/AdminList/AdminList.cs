@@ -8,7 +8,7 @@ using CounterStrikeSharp.API.Modules.Utils;
 
 namespace AdminList;
 
-public abstract class AdminList : BasePlugin
+public class AdminList : BasePlugin
 {
     public override string ModuleName => "Admin List";
     public override string ModuleVersion => "1.0";
@@ -16,7 +16,7 @@ public abstract class AdminList : BasePlugin
 
     private static Config? _config;
 
-    public override void Load(bool hotLoaded)
+    public override void Load(bool hotReload)
     {
         var configPath = Path.Join(ModuleDirectory, "Config.json");
         if (!File.Exists(configPath))
@@ -27,7 +27,7 @@ public abstract class AdminList : BasePlugin
         }
         else _config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configPath));        
     }
-
+    
     [ConsoleCommand("admins", "Prints admins list")]
     public void OnCommand(CCSPlayerController? activator, CommandInfo command)
     {
