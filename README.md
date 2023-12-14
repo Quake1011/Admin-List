@@ -5,12 +5,12 @@ Displays a list of online administrators in the chat on command **!admins**
 
 ## Requirements
 - [Metamod](https://www.sourcemm.net/downloads.php/?branch=master)
-- [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp/releases/tag/v30) >= v30
+- [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp/releases/tag/v126) >= v126
 
 ## Install
 - Drop folder `build/AdminList` to `addons/counterstrikesharp/plugins/`
 
-- Configuration file will be generated after the plugin is launched in the folder `addons/counterstrikesharp/plugins/AdminList`:
+- Configuration file will be generated after the plugin is launched in the folder `addons/counterstrikesharp/configs/AdminList/AdminList.json`:
 	- `Config.json`
 	
 ### Config.json
